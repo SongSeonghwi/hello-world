@@ -1,72 +1,26 @@
-# hello-world
-
-
-
-
-
-
-import turtle
-
 import random
 
+# 生成一个1-100之间的随机整数
+number = random.randint(1, 100)
 
-turtle.setup(500, 500)
+# 用于记录玩家猜测的次数
+guesses = 0
 
-turtle.bgcolor("gray")
+# 游戏循环
+while True:
+    # 从玩家获取猜测
+    guess = int(input("请猜测一个1-100之间的整数："))
 
-turtle.title("贪吃蛇")
+    # 增加猜测次数
+    guesses += 1
 
-turtle.tracer(False)
+    # 判断猜测结果
+    if guess < number:
+        print("你猜的数字太小了！")
+    elif guess > number:
+        print("你猜的数字太大了！")
+    else:
+        print("恭喜你猜对了！")
+        print("你一共猜了", guesses, "次。")
+        break
 
-
-
-square_size = 20
-
-start_length = 3
-
-delay = 100
-
-
-snake = []
-for i in range(start_length):
-    turtle.goto(i * square_size, 0)
-    snake_segment = turtle.Turtle("square")
-    snake_segment.color("white")
-    snake_segment.penup()
-    snake.append(snake_segment)
-
-
-food = turtle.Turtle("circle")
-food.color("red")
-food.penup()
-food.goto(random.randint(-12, 12) * square_size, random.randint(-12, 12) * square_size)
-
-
-def move():
-    global food
-    head = snake[0].clone()
-    head.color("green")
-    head.forward(square_size)
-
-    if head.distance(food) < square_size:
-        food.goto(random.randint(-12, 12) * square_size, random.randint(-12, 12) * square_size)
-        snake.append(food.clone())
-
-    for i in range(len(snake) - 1, 0, -1):
-        snake[i].goto(snake[i - 1].xcor(), snake[i - 1].ycor())
-
-    snake[0].setheading(head.towards(snake[1]))
-    snake[0] = head
-
-    if head.xcor() < -12 * square_size or head.xcor() > 12 * square_size or head.ycor() < -12 * square_size or head.ycor() > 12 * square_size:
-        turtle.bye()
-
-    for i in range(1, len(snake)):
-        if head.distance(snake[i]) < square_size:
-            turtle.bye()
-
-    turtle.ontimer(move, delay)
-
-
-move()
-turtle.done()
