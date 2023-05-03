@@ -1,12 +1,12 @@
 import random
 
-# 生成一个1-100之间的随机整数
+# 1-100ranmdom
 number = random.randint(1, 100)
 
-# 用于记录玩家猜测的次数
+# 사용자 상용 개수
 guesses = 0
 
-# 游戏循环
+# 게임 순환
 while True:
     # 从玩家获取猜测
     guess = int(input("请猜测一个1-100之间的整数："))
