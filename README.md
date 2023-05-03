@@ -1,17 +1,29 @@
 # hello-world
 
+
+
+
+
+
 import turtle
+
 import random
 
 
 turtle.setup(500, 500)
+
 turtle.bgcolor("gray")
+
 turtle.title("贪吃蛇")
+
 turtle.tracer(False)
 
 
+
 square_size = 20
+
 start_length = 3
+
 delay = 100
 
 
